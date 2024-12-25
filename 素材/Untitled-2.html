@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Navigation Bar</title>
+    <style>
+        /* 导航条整体样式 */
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        /* 导航项样式 */
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+	padding: 10px 15px;
+	cursor: pointer;
+	color: white;
+	transition: all 0.3s ease;
+        }
+
+        nav ul li.active {
+            background-color: #555;
+        }
+		   .carousel {
+      width: 500px;
+      height: 300px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+   .carousel-inner {
+      display: flex;
+      width: fit-content;
+      transition: transform 0.5s ease;
+    }
+
+   .carousel-inner img {
+      width: 500px;
+      height: 300px;
+    }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+          <li class="active" data-index="0">首页</li>
+          <li data-index="1">技能</li>
+          <li data-index="2">教育</li>
+          <li data-index="3">爱好</li>
+		  <li data-index="4">空间</li>
+			
+        </ul>
+    </nav>
+    <script>
+        const navItems = document.querySelectorAll('nav ul li');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', function () {
+                // 移除所有导航项的active类名
+                navItems.forEach(i => i.classList.remove('active'));
+                // 给当前点击的导航项添加active类名
+                this.classList.add('active');
+            });
+        });
+		
+    </script>
+	<div class="carousel">
+		<div class="carousel-inner">
+    <img src="DSC_0196.JPG" width="6048" height="4032" alt=""/>
+		<img src="DSC_0202.JPG" width="6048" height="4032" alt=""/>
+		<img src="DSC_0229.JPG" width="6048" height="4032" alt=""/>
+    
+      
+    </div>
+  </div>
+	
+<script>
+    // JavaScript部分
+    const carouselInner = document.querySelector('.carousel-inner');
+    const images = document.querySelectorAll('.carousel-inner img');
+    let currentIndex = 0;
+
+    function nextSlide() {
+      currentIndex++;
+      if (currentIndex >= images.length) {
+        currentIndex = 0;
+      }
+      carouselInner.style.transform = `translateX(-${currentIndex * 500}px)`;
+    }
+
+    setInterval(nextSlide, 3000);
+  </script>
+</body>
+
+</html>
